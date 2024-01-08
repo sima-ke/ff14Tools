@@ -1,5 +1,6 @@
 use std::io;
   
+    println!("Enter the cost of protective, conceptual, fundamental and obscure");
     ///Made by Li Zhang
     ///Determine whether it is cheaper to go for a 70% or 30% sac plate
     ///
@@ -7,7 +8,18 @@ use std::io;
     ///
     ///```
     ///let input = "200 50 65 99";
+    ///let mut output = Vec::new();
     ///
+    ///let answer = {
+    ///let mut iohandler = ioHandler {
+    ///reader: &input[..],
+    ///writer: &mut output,
+    ///};
+    ///iohandler.prompt("Testing logograms")
+    ///};
+    ///let output = String::from_utf8(output).expect("Not UTF-8");
+    ///
+    ///}
     ///```
     ///
     ///let logogramTest = Logogram {
@@ -30,6 +42,10 @@ use std::io;
     ///
     ///
 pub fn SacCalc(){
+    let stdio = io::stdin();
+    let input = stdio.lock();
+    let output = io::stdout();
+
     let mut costs = prompt("Enter the cost of protective, conceptual, fundamental and obscure");
     let costVector = costs.split(" ")
         .filter_map(|cost| cost.parse::<f32>().ok()) //filter_map will ignore elements that can't
@@ -55,15 +71,25 @@ pub fn SacCalc(){
     println!("Print the whole logogram  {:?}", logogramCost);
     println!("isSeventyBetter I wonder {:?}", logogramCost.isSeventyBetter)
   }
+struct ioHandler<R, W>{
+    reader: R,
+    writer: W,
+}
+impl<R,W> ioHandler<R,W>
+where
+    r: io::BufRead,
+    W: io::Write,
 
-fn prompt(prompt: &str) -> String {
-    println!("Enter the cost of protective, conceptual, fundamental and obscure");
+fn prompt(prompt: &str, mut io::self) -> String 
+{
+    write!(&mut io::self.writer, "{}", prompt)
+        .expect("Failed to write");
     let mut costs = String::new();
-    io::stdin()
+    io::self.reader
       .read_line(&mut costs)
       .expect("Failed to read line");
     return costs;
-}
+}}
 #[derive(Debug)]
  pub struct Logogram {
     protective: f32,
