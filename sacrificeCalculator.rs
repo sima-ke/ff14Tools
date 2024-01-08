@@ -1,9 +1,13 @@
 use std::io;
-    ///Define a Logogram with its cost
+    ///Determine whether it is cheaper to go for a 70% or 30% sac plate
     ///
     ///#Examples
     ///
     ///```
+    ///let input = "200 50 65 99";
+    ///
+    ///```
+    ///
     ///let logogramTest = Logogram {
     ///     protective: 200
     ///     conceptual: 50
@@ -17,25 +21,17 @@ use std::io;
     ///assert_eq!(logogramTest.thirtyPercentCost, 379);
     ///assert_eq!(logogramTest.isSeventyBetter, false)
     ///
-    ///```
-    ///
+
     ///Take in the cost of logograms
     ///Using the format("protective
     ///conceptual fundamental obscure")
     ///
     ///
 pub fn SacCalc(){
-    println!("Enter the cost of protective, conceptual, fundamental and obscure");
-
-    println!("Enter the cost of protective, conceptual, fundamental and obscure");
-    let mut costs = String::new();
-
-    io::stdin()
-      .read_line(&mut costs)
-      .expect("Failed to read line");
-    
+    let mut costs = prompt();
     let costVector = costs.split(" ")
-        .filter_map(|cost| cost.parse::<f32>().ok())
+        .filter_map(|cost| cost.parse::<f32>().ok()) //filter_map will ignore elements that can't
+                                                     //become f32
         .collect::<Vec<_>>();
     if costVector.len() < 4{
         panic!("Not enough prices")
@@ -54,10 +50,18 @@ pub fn SacCalc(){
         //protective < 6.67*fundamental+24.5*conceptual+2.67*obscure
         isSeventyBetter: (costVector[0]) < (6.67*costVector[2]+24.5*costVector[1]+2.67*costVector[3]),
     };
-    println!("Print the whole logogram?  {:?}", logogramCost);
+    println!("Print the whole logogram  {:?}", logogramCost);
     println!("isSeventyBetter I wonder {:?}", logogramCost.isSeventyBetter)
   }
 
+fn prompt() -> String {
+    println!("Enter the cost of protective, conceptual, fundamental and obscure");
+    let mut costs = String::new();
+    io::stdin()
+      .read_line(&mut costs)
+      .expect("Failed to read line");
+    return costs;
+}
 #[derive(Debug)]
  pub struct Logogram {
     protective: f32,
