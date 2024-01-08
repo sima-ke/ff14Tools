@@ -1,4 +1,6 @@
 use std::io;
+  
+    ///Made by Li Zhang
     ///Determine whether it is cheaper to go for a 70% or 30% sac plate
     ///
     ///#Examples
@@ -28,7 +30,7 @@ use std::io;
     ///
     ///
 pub fn SacCalc(){
-    let mut costs = prompt();
+    let mut costs = prompt("Enter the cost of protective, conceptual, fundamental and obscure");
     let costVector = costs.split(" ")
         .filter_map(|cost| cost.parse::<f32>().ok()) //filter_map will ignore elements that can't
                                                      //become f32
@@ -54,7 +56,7 @@ pub fn SacCalc(){
     println!("isSeventyBetter I wonder {:?}", logogramCost.isSeventyBetter)
   }
 
-fn prompt() -> String {
+fn prompt(prompt: &str) -> String {
     println!("Enter the cost of protective, conceptual, fundamental and obscure");
     let mut costs = String::new();
     io::stdin()
