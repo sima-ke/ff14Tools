@@ -24,7 +24,7 @@ use std::io;
     ///conceptual fundamental obscure")
     ///
     ///
-pub fn SacCalc() {
+pub fn SacCalc(){
     println!("Enter the cost of protective, conceptual, fundamental and obscure");
 
     println!("Enter the cost of protective, conceptual, fundamental and obscure");
@@ -45,19 +45,21 @@ pub fn SacCalc() {
         protective:  costVector[0],
         conceptual:  costVector[1],
         fundamental: costVector[2],
-        ///Implement 70% chance is 1protective+2fundamental+1obscure
-        ///and 30% chance is       3conceptual+2fundamental+1obscure
+        //Implement 70% chance is 1protective+2fundamental+1obscure
+        //and 30% chance is       3conceptual+2fundamental+1obscure
         obscure:     costVector[3],
         thirtyPercentCost: (1.0*costVector[0]+2.0*costVector[1]+1.0*costVector[3]),
         seventyPercentCost: (3.0*costVector[1]+2.0*costVector[2]+1.0*costVector[3]),
-        ///Determine if 70% is better using
-        ///protective < 6.67*fundamental+24.5*conceptual+2.67*obscure
+        //Determine if 70% is better using
+        //protective < 6.67*fundamental+24.5*conceptual+2.67*obscure
         isSeventyBetter: (costVector[0]) < (6.67*costVector[2]+24.5*costVector[1]+2.67*costVector[3]),
     };
+    println!("Print the whole logogram?  {:?}", logogramCost);
+    println!("isSeventyBetter I wonder {:?}", logogramCost.isSeventyBetter)
   }
 
-
- struct Logogram {
+#[derive(Debug)]
+ pub struct Logogram {
     protective: f32,
     conceptual: f32,
     fundamental: f32,
