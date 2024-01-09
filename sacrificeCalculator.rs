@@ -1,41 +1,46 @@
 use std::io::{self, BufRead, Write};
 ///Made by Li Zhang
+///
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
 ///
-///#Examples
-///
+///# Examples
+/// 
 ///```
+///use std::io::{self,BufRead,Write};
+///use sacrificeCalculator::{Logogram,sacCalc,ioHandler};
 ///let logogramTest = Logogram {
-///     protective: 200
-///     conceptual: 50
-///     fundamental: 65
+///     protective: 200,
+///     conceptual: 50,
+///     fundamental: 65,
 ///     obscure: 99,
-///     seventPercentCost: 1.0*200+2.0*50+1.0*99,
-///     thirtyPercentCost: 3.0*50+2.0*65+1.0*99,
-///     isSeventyBetter: (200) < (6.67*65+24.5*50+2.67*99),
-///}
+///     seventPercentCost: 1.0*200.0+2.0*50.0+1.0*99.0,
+///     thirtyPercentCost: 3.0*50.0+2.0*65.0+1.0*99.0,
+///     isSeventyBetter: (200.0) < (6.67*65.0+24.5*50.0+2.67*99.0),
+///};
+///
 ///let input = "200 50 65 99";
 ///let mut output = Vec::new();
 ///
 ///
-///sacCalc(input,output,"Testing Logograms")
+///sacCalc(input,output,"Testing Logograms");
 ///
 ///let answer = {
-///let mut iohandlertest = ioHandler {
-///reader: &input[..],
-///writer: &mut output,
-///};
+/// let mut iohandlertest = ioHandler {
+/// reader: &input[..],
+/// writer: &mut output,
+/// };
 ///iohandlertest.prompt("Testing logograms")
 ///};
 ///let output = String::from_utf8(output).expect("Not UTF-8");
 ///
 ///assert_eq!("Testing logograms", output);
 ///assert_eq!("200 50 65 99", answer);
-///}
+///
 ///```
 ///Take in the cost of logograms
 ///Using the format("protective
 ///conceptual fundamental obscure")
+///
 ///
 ///
 pub fn SacCalc<R, W>(mut reader: R, mut writer: W, prompt: &str)
@@ -75,7 +80,7 @@ where
     );
 }
 ///////////////////////////////////////////////
-struct ioHandler<R, W> {
+pub struct ioHandler<R, W> {
     reader: R,
     writer: W,
 }
