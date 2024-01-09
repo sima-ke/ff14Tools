@@ -1,5 +1,4 @@
 use std::io::{self, BufRead, Write};
-
 ///Made by Li Zhang
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
 ///
@@ -18,17 +17,20 @@ use std::io::{self, BufRead, Write};
 ///let input = "200 50 65 99";
 ///let mut output = Vec::new();
 ///
+///
+///sacCalc(input,output,"Testing Logograms")
+///
 ///let answer = {
-///let mut iohandler = ioHandler {
+///let mut iohandlertest = ioHandler {
 ///reader: &input[..],
 ///writer: &mut output,
 ///};
-///iohandler.prompt("Testing logograms")
+///iohandlertest.prompt("Testing logograms")
 ///};
 ///let output = String::from_utf8(output).expect("Not UTF-8");
 ///
 ///assert_eq!("Testing logograms", output);
-///assert_eq!(logogramTest, answer)
+///assert_eq!("200 50 65 99", answer);
 ///}
 ///```
 ///Take in the cost of logograms
@@ -36,16 +38,13 @@ use std::io::{self, BufRead, Write};
 ///conceptual fundamental obscure")
 ///
 ///
-pub fn SacCalc() {
-    let stdio = io::stdin();
-    let input = stdio.lock();
-    let output = io::stdout();
-    let mut iohandler = ioHandler {
-        reader: input,
-        writer: output,
-    };
-    let mut costs =
-        iohandler.prompt("Enter the cost of protective, conceptual, fundamental and obscure");
+pub fn SacCalc<R, W>(mut reader: R, mut writer: W, prompt: &str)
+where
+    R: BufRead,
+    W: Write,
+{
+    let mut iohandler = ioHandler { reader, writer };
+    let mut costs = iohandler.prompt(prompt);
     let costVector = costs
         .split(" ")
         .filter_map(|cost| cost.parse::<f32>().ok()) //filter_map will ignore elements that can't
@@ -75,7 +74,7 @@ pub fn SacCalc() {
         logogramCost.isSeventyBetter
     );
 }
-
+///////////////////////////////////////////////
 struct ioHandler<R, W> {
     reader: R,
     writer: W,
