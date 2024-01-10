@@ -75,11 +75,12 @@
 <a href="#75" id="75">75</a>
 <a href="#76" id="76">76</a>
 <a href="#77" id="77">77</a>
-<a href="#78" id="78">78</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::io::{<span class="self">self</span>, BufRead, Write};
 <span class="doccomment">///Made by Li Zhang
 ///
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
+///From the ABBA discord server ~sac command
+///&lt;https://discord.gg/abbaffxiv&gt;
 ///![Determine whether sac is better](sacCost.png)
 </span><span class="kw">pub fn </span>SacCalc&lt;R, W&gt;(<span class="kw-2">mut </span>reader: R, <span class="kw-2">mut </span>writer: W, prompt: <span class="kw-2">&amp;</span>str)
 <span class="kw">where
@@ -94,8 +95,8 @@
         //become f32
         </span>.collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
 
-    <span class="comment">//println!(&quot;{} \n total items is {} \n cost vector is {} \n costVector is {:?}&quot;, 
-      //       costs, costs.len(), costVector.len(), costVector);
+    <span class="comment">//println!(&quot;{} \n total items is {} \n cost vector is {} \n costVector is {:?}&quot;,
+    //       costs, costs.len(), costVector.len(), costVector);
     </span><span class="kw">if </span>costVector.len() &lt; <span class="number">4 </span>{
         <span class="macro">panic!</span>(<span class="string">&quot;Not enough prices&quot;</span>)
     }
@@ -114,15 +115,13 @@
         </span>isSeventyBetter: (costVector[<span class="number">0</span>])
             &lt; (<span class="number">6.67 </span>* costVector[<span class="number">2</span>] + <span class="number">24.5 </span>* costVector[<span class="number">1</span>] + <span class="number">2.67 </span>* costVector[<span class="number">3</span>]),
     };
-   <span class="comment">// println!(&quot;Print the whole logogram  {:?}&quot;, logogramCost);
+    <span class="comment">// println!(&quot;Print the whole logogram  {:?}&quot;, logogramCost);
     </span><span class="macro">println!</span>(
         <span class="string">&quot;Cost of 70% is {} \nCost of 30% is {}\nIs seventy better?: {}&quot;</span>,
         logogramCost.seventyPercentCost,
         logogramCost.thirtyPercentCost,
         logogramCost.isSeventyBetter,
-
     );
-
 }
 <span class="comment">///////////////////////////////////////////////
 </span><span class="kw">pub struct </span>ioHandler&lt;R, W&gt; {
@@ -153,5 +152,4 @@
     seventyPercentCost: f32,
     isSeventyBetter: bool,
 }
-
 </code></pre></div></section></main></body></html>

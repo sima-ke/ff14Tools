@@ -3,7 +3,7 @@ use std::io::{self, BufRead, Write};
 ///
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
 ///From the ABBA discord server ~sac command
-///https://discord.gg/abbaffxiv
+///<https://discord.gg/abbaffxiv>
 ///![Determine whether sac is better](sacCost.png)
 pub fn SacCalc<R, W>(mut reader: R, mut writer: W, prompt: &str)
 where
