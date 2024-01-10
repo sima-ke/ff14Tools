@@ -2,6 +2,8 @@ use std::io::{self, BufRead, Write};
 ///Made by Li Zhang
 ///
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
+///From the ABBA discord server ~sac command
+///https://discord.gg/abbaffxiv
 ///![Determine whether sac is better](sacCost.png)
 pub fn SacCalc<R, W>(mut reader: R, mut writer: W, prompt: &str)
 where
@@ -16,8 +18,8 @@ where
         //become f32
         .collect::<Vec<_>>();
 
-    //println!("{} \n total items is {} \n cost vector is {} \n costVector is {:?}", 
-      //       costs, costs.len(), costVector.len(), costVector);
+    //println!("{} \n total items is {} \n cost vector is {} \n costVector is {:?}",
+    //       costs, costs.len(), costVector.len(), costVector);
     if costVector.len() < 4 {
         panic!("Not enough prices")
     }
@@ -36,15 +38,13 @@ where
         isSeventyBetter: (costVector[0])
             < (6.67 * costVector[2] + 24.5 * costVector[1] + 2.67 * costVector[3]),
     };
-   // println!("Print the whole logogram  {:?}", logogramCost);
+    // println!("Print the whole logogram  {:?}", logogramCost);
     println!(
         "Cost of 70% is {} \nCost of 30% is {}\nIs seventy better?: {}",
         logogramCost.seventyPercentCost,
         logogramCost.thirtyPercentCost,
         logogramCost.isSeventyBetter,
-
     );
-
 }
 ///////////////////////////////////////////////
 pub struct ioHandler<R, W> {
@@ -75,4 +75,3 @@ pub struct Logogram {
     seventyPercentCost: f32,
     isSeventyBetter: bool,
 }
-
