@@ -2,47 +2,7 @@ use std::io::{self, BufRead, Write};
 ///Made by Li Zhang
 ///
 ///Determine whether it is cheaper to go for a 70% or 30% sac plate
-///
-///# Examples
-/// 
-///```
-///use std::io::{self,BufRead,Write};
-///use sacrificeCalculator::{Logogram,sacCalc,ioHandler};
-///let logogramTest = Logogram {
-///     protective: 200,
-///     conceptual: 50,
-///     fundamental: 65,
-///     obscure: 99,
-///     seventPercentCost: 1.0*200.0+2.0*50.0+1.0*99.0,
-///     thirtyPercentCost: 3.0*50.0+2.0*65.0+1.0*99.0,
-///     isSeventyBetter: (200.0) < (6.67*65.0+24.5*50.0+2.67*99.0),
-///};
-///
-///let input = "200 50 65 99";
-///let mut output = Vec::new();
-///
-///
-///sacCalc(input,output,"Testing Logograms");
-///
-///let answer = {
-/// let mut iohandlertest = ioHandler {
-/// reader: &input[..],
-/// writer: &mut output,
-/// };
-///iohandlertest.prompt("Testing logograms")
-///};
-///let output = String::from_utf8(output).expect("Not UTF-8");
-///
-///assert_eq!("Testing logograms", output);
-///assert_eq!("200 50 65 99", answer);
-///
-///```
-///Take in the cost of logograms
-///Using the format("protective
-///conceptual fundamental obscure")
-///
-///
-///
+///![Determine whether sac is better](sacCost.png)
 pub fn SacCalc<R, W>(mut reader: R, mut writer: W, prompt: &str)
 where
     R: BufRead,
@@ -55,6 +15,9 @@ where
         .filter_map(|cost| cost.parse::<f32>().ok()) //filter_map will ignore elements that can't
         //become f32
         .collect::<Vec<_>>();
+
+    //println!("{} \n total items is {} \n cost vector is {} \n costVector is {:?}", 
+      //       costs, costs.len(), costVector.len(), costVector);
     if costVector.len() < 4 {
         panic!("Not enough prices")
     }
@@ -73,11 +36,15 @@ where
         isSeventyBetter: (costVector[0])
             < (6.67 * costVector[2] + 24.5 * costVector[1] + 2.67 * costVector[3]),
     };
-    println!("Print the whole logogram  {:?}", logogramCost);
+   // println!("Print the whole logogram  {:?}", logogramCost);
     println!(
-        "isSeventyBetter I wonder {:?}",
-        logogramCost.isSeventyBetter
+        "Cost of 70% is {} \nCost of 30% is {}\nIs seventy better?: {}",
+        logogramCost.seventyPercentCost,
+        logogramCost.thirtyPercentCost,
+        logogramCost.isSeventyBetter,
+
     );
+
 }
 ///////////////////////////////////////////////
 pub struct ioHandler<R, W> {
@@ -108,3 +75,4 @@ pub struct Logogram {
     seventyPercentCost: f32,
     isSeventyBetter: bool,
 }
+

@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"sacrificeCalculator":[["impl&lt;R, W&gt; Freeze for <a class=\"struct\" href=\"sacrificeCalculator/struct.ioHandler.html\" title=\"struct sacrificeCalculator::ioHandler\">ioHandler</a>&lt;R, W&gt;<span class=\"where fmt-newline\">where\n    R: Freeze,\n    W: Freeze,</span>",1,["sacrificeCalculator::ioHandler"]],["impl Freeze for <a class=\"struct\" href=\"sacrificeCalculator/struct.Logogram.html\" title=\"struct sacrificeCalculator::Logogram\">Logogram</a>",1,["sacrificeCalculator::Logogram"]]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
